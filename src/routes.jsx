@@ -1,6 +1,6 @@
-import { Dashboard } from './pages/Dashboard.jsx'
-import { WorkoutSessions } from './pages/WorkoutSessions.jsx'
-import { WorkoutTemplates } from './pages/WorkoutTemplates.jsx'
+import { Dashboard } from '@/pages/Dashboard.jsx'
+import { WorkoutSessions } from '@/pages/WorkoutSessions.jsx'
+import { WorkoutTemplates } from '@/pages/WorkoutTemplates.jsx'
 
 export const routes = [
   {
