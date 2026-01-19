@@ -1,0 +1,15 @@
+body {
+  @include fluid-props(padding-top, 15px, 30px);
+  @include fluid-props(padding-left padding-right, 20px, 40px);
+  @include fluid-props(padding-bottom, 30px, 60px);
+}
+
+header {
+  @include fluid-props(margin-bottom, 20px, 30px);
+
+  h1 {
+    @include fluid-props(font-size, 25px, 40px);
+    font-weight: $font-weight-bold;
+    line-height: 140%;
+  }
+}
