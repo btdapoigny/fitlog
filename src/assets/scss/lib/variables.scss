@@ -1,0 +1,61 @@
+:root {
+  --height-100svh: 100%;;
+}
+
+/**
+ * FONTS
+ *
+ * NOTE: $font-primary is mainly used for text / $font-secondary for title
+ * NOTE: always set the `$font-secondary` in combination with `font-variant-numeric: lining-nums;`
+ */
+$font-primary: 'Roboto', sans-serif;
+
+// Font weights
+$font-weight-thin: 100;
+$font-weight-extra-light: 200;
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semi-bold: 600;
+$font-weight-bold: 700;
+$font-weight-extra-bold: 800;
+$font-weight-black: 900;
+
+/*
+ * COLORS
+ */
+$color-white: #FFFFFF;
+$color-background: #F8F9FA;
+
+$color-primary: #00C8B3;
+$color-grey-light: #E2E8F0;
+$color-grey: #A0AEC0;
+$color-grey-dark: #718096;
+
+$color-text: #2D3748;
+$color-error: #E53E3E;
+
+/**
+ * FLUID SIZING BREAKPOINTS
+ *
+ * This defines at which size the fluid-sizing mechanism
+ * should start, and end.
+ */
+$fluid-huge: 2560px;
+$small-breakpoint: 600px;
+$tablet-breakpoint: 768px;
+$medium-breakpoint: 900px;
+$laptop-breakpoint: 1024px;
+$big-laptop-breakpoint: 1200px;
+$desktop-breakpoint: 1440px;
+$medium-desktop-breakpoint: 1680px;
+$big-desktop-breakpoint: 1920px;
+$huge-breakpoint: 2560px;
+
+$fluid-min: 375px;
+$fluid-max: $medium-desktop-breakpoint;
+
+/**
+ * Z-INDEX
+ */
+$z-index-navbar: 10;

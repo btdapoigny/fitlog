@@ -1,0 +1,147 @@
+* {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	box-sizing: border-box;
+}
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+/* HTML5 display-role reset for older browsers */
+main, article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, form {
+  	display: block;
+}
+body {
+	line-height: 1;
+}
+
+/**
+ * Set a minimalistic set of global rules.
+ */
+ html {
+	box-sizing: border-box;
+	font-family: $font-primary;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	font-size: 16px; // 1rem == 16px
+	color: $color-text;
+	background-color: $color-background;
+	scroll-behavior: smooth;
+
+	@media screen and (prefers-reduced-motion: reduce) {
+		scroll-behavior: auto;
+	}
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+	font-family: inherit;
+	outline: none;
+}
+
+ol, ul {
+	list-style-type: none;
+	list-style: none;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+a {
+	text-decoration: none;
+}
+sub { 
+	vertical-align: text-top;
+	font-size: smaller;
+}
+button {
+	background: none;
+	outline: none;
+	border: none;
+	padding: 0;
+	margin: 0;
+	color: #000000;
+}
+:focus {
+	outline: none;
+}
+input:focus, textarea:focus, keygen:focus, select:focus {
+	outline-offset: 0;
+}
+input[type="range"], input, input:matches([type="password"], [type="search"]) {
+	border-width: 0;
+	padding: 0;
+}
+input, select, textarea {
+	margin: 0;
+	border-radius: 0;
+	border-width: 0;
+	border: none;
+	padding: 0;
+	-webkit-border-radius: 0px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+select {
+    text-align: center;
+}
+input:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0 10rem $color-text inset;
+	-webkit-text-fill-color: #fff !important;
+}
+img {
+	user-drag: none; 
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+strong {
+  font-weight: inherit;
+}
+address {
+	font-style: normal;
+}
+
+::-webkit-scrollbar {
+	display: none;
+}
+
+::selection {
+	color: $color-white;
+	background: $color-text;
+}

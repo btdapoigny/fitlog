@@ -1,3 +1,5 @@
+import './assets/scss/bundle.scss';
+
 function App() {
   return (
     <>

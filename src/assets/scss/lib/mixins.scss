@@ -1,0 +1,103 @@
+@use "variables";
+
+@use "sass:math";
+
+////
+/// Sass functions
+/// @group functions
+////
+
+///
+/// strip the unit from any css value
+/// @param {Value} $position - like `13px`, `2em` or `5%`
+///
+@function strip-unit($value) {
+	@return math.div($value, $value * 0 + 1);
+}
+
+///
+/// Line Clamp
+/// @param {Number} $max-lines - Number of lines
+///
+@mixin line-clamp($max-lines) {
+	display: -webkit-box;
+	-webkit-line-clamp: $max-lines;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+///
+/// Crop line-height
+/// remove the top space from your text element
+/// https://medium.com/codyhouse/line-height-crop-a-simple-css-formula-to-remove-top-space-from-your-text-9c3de06d7c6f
+/// @param {Number} $line-height - unitless line-height of the text that needs cropping
+///
+@mixin lhCrop($line-height) {
+	&::before {
+		content: '';
+		display: block;
+		height: 0;
+		width: 0;
+		margin-top: calc((1 - #{$line-height}) * 0.5em);
+	}
+}
+
+///
+/// Fluid Props
+/// @param {Properties} $properties - Space-separated list of properties to act on
+/// @param {Size} $min-value - Minimum value in px (`$properties` will have this value when `viewport width == $min-vw`)
+/// @param {Size} $max-value - Maximum value in px (`$properties` will have this value when `viewport width == $max-vw`)
+/// @param {Size} $min-vw [$fluid-min] - (optional) Viewport width in px at which we start growing
+/// @param {Size} $max-vw [$fluid-max] - (optional) Viewport width in px at which we stop growing
+/// @param {Boolean} $set-initial-properties [true] - (optional) Define a default attribute for `viewport width < $min-vw` ?
+/// @param {Boolean} $set-after-properties [true] - (optional) Define a lasting attribute after `viewport width >= $max-vw` ?
+/// @param {Boolean} $suffix [null] - (optional) Add a suffix such as `!important`
+///
+@mixin fluid-props(
+	$properties,
+	$min-value,
+	$max-value,
+	$min-vw: $fluid-min,
+	$max-vw: $fluid-max,
+	$set-initial-properties: true,
+	$set-after-properties: true,
+	$suffix: null
+) {
+	// TODO: throw an error if $min-value / $max-value / $min-vw / $max-vw is NOT in px
+	//       as it breaks the calculation
+	@if $set-initial-properties {
+		@media screen and (max-width: $min-vw - 1) {
+			@each $property in $properties {
+				#{$property}: $min-value $suffix;
+			}
+		}
+	}
+
+	@media screen and (min-width: $min-vw) and (max-width: $max-vw - 1) {
+		@each $property in $properties {
+			#{$property}: calc(
+				#{$min-value} +
+				#{strip-unit($max-value - $min-value)} *
+				(100vw - #{$min-vw}) /
+				#{strip-unit($max-vw - $min-vw)}
+			)
+				$suffix;
+		}
+	}
+
+	@if $set-after-properties {
+		@media screen and (min-width: $max-vw) {
+			@each $property in $properties {
+				#{$property}: $max-value $suffix;
+			}
+		}
+	}
+}
+
+@mixin itemsApparition {
+  @for $i from 1 through 100 {
+    &:nth-child(#{$i}) {
+			--delay: #{.05 * $i}s;
+    }
+	}
+}
