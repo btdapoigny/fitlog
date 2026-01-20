@@ -1,4 +1,5 @@
 import { Outlet, useMatches } from 'react-router'
+import { Navbar } from '@/components/organisms/Navbar'
 
 function App() {
   const matches = useMatches()
@@ -12,6 +13,7 @@ function App() {
       </header>
       <main>
         <Outlet />
+        <Navbar />
       </main>
     </>
   )

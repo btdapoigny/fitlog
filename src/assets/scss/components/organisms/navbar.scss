@@ -1,0 +1,84 @@
+.navbar {
+  @include fluid-props(padding-top padding-bottom, 8px, 10px);
+  @include fluid-props(padding-left padding-right, 10px, 12px);
+  @include fluid-props(bottom, 25px, 25px);
+  position: fixed;
+  left: 50%;
+  width: fit-content;
+  border-radius: 15px;
+  background-color: $color-white;
+  box-shadow: 0px 0px 5.5px 0px rgba(0, 0, 0, .08);
+  opacity: 0;
+  transform: translate(-50%, -10px);
+  transition: transform .4s cubic-bezier(0.73, 1, 0.68, 1),
+              opacity .25s cubic-bezier(0.73, 1, 0.68, 1);
+
+  &.is-visible {
+    opacity: 1;
+    transform: translate(-50%, 0px);
+  }
+
+  &__selector {
+    @include fluid-props(top, 8px, 10px);
+    position: absolute;
+    left: 0;
+    width: var(--item-width);
+    height: var(--item-height);
+    border-radius: 10px;
+    background-color: $color-primary;
+    will-change: transform, width;
+    transform: translateX(var(--item-x-position));
+    transition: transform .25s cubic-bezier(0.73, 1, 0.68, 1),
+                width .25s cubic-bezier(0.73, 1, 0.68, 1);
+  }
+
+  &__list {
+    @include fluid-props(gap, 8px, 10px);
+    display: flex;
+
+    &__item {
+      @include fluid-props(padding-top padding-bottom, 10px, 12px);
+      @include fluid-props(padding-left padding-right, 12px, 16px);
+      @include fluid-props(gap, 8px, 12px);
+      position: relative;
+      display: flex;
+      align-items: center;
+      border-radius: 10px;
+      transition: background-color .2s cubic-bezier(0.73, 1, 0.68, 1);
+      z-index: 1;
+
+      &:hover:not(.active) {
+        background-color: $color-background;
+      }
+
+      &.active {
+        transition-duration: .1s;
+        
+        span {
+          color: $color-white;
+          transition-delay: .1s;
+        }
+
+        svg path {
+          fill: $color-white;
+          transition-delay: .1s;
+        }
+      }
+
+      svg {
+        @include fluid-props(width height, 14px, 16px);
+
+        path {
+          transition: fill .2s cubic-bezier(0.73, 1, 0.68, 1);
+        }
+      }
+
+      span {
+        @include fluid-props(font-size, 14px, 16px);
+        color: $color-text;
+        font-weight: $font-weight-bold;
+        transition: color .2s cubic-bezier(0.73, 1, 0.68, 1);
+      }
+    }
+  }
+}
