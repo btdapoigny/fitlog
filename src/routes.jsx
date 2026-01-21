@@ -12,6 +12,7 @@ export const routes = [
     element: <Dashboard />,
     handle: {
       title: 'Dashboard',
+      class: 'dashboard',
       icon: HomeIcon,
     },
   },
@@ -20,6 +21,7 @@ export const routes = [
     element: <WorkoutSessions />,
     handle: {
       title: 'Séances',
+      class: 'workout-sessions',
       icon: CalendarIcon,
     },
   },
@@ -28,6 +30,7 @@ export const routes = [
     element: <WorkoutTemplates />,
     handle: {
       title: 'Modèles',
+      class: 'workout-templates',
       icon: FileIcon,
     },
   },

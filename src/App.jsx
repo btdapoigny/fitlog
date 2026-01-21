@@ -4,14 +4,16 @@ import { Navbar } from '@/components/organisms/Navbar'
 function App() {
   const matches = useMatches()
 
-  const pageTitle = matches[matches.length - 1].handle?.title
+  const page = matches[matches.length - 1]
+  const pageTitle = page.handle?.title
+  const pageClass = page.handle?.class
 
   return (
     <>
       <header>
         <h1>{ pageTitle }</h1>
       </header>
-      <main>
+      <main className={ pageClass }>
         <Outlet />
         <Navbar />
       </main>
