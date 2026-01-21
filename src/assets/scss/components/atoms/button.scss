@@ -1,0 +1,20 @@
+.button {
+  @include fluid-props(padding-top padding-bottom, 10px, 12px);
+  @include fluid-props(padding-left padding-right, 25px, 35px);
+  @include fluid-props(font-size, 14px, 14px);
+  display: block;
+  width: fit-content;
+  text-transform: uppercase;
+  font-weight: $font-weight-bold;
+  color: $color-white;
+  border: solid 1px $color-primary;
+  background-color: $color-primary;
+  border-radius: 10px;
+  transition: background-color .2s cubic-bezier(0.73, 1, 0.68, 1),
+              color .2s cubic-bezier(0.73, 1, 0.68, 1);
+
+  &:hover {
+    background-color: transparent;
+    color: $color-primary;
+  }
+}
