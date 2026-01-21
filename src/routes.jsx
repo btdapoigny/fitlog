@@ -2,9 +2,9 @@ import { Dashboard } from '@/pages/Dashboard.jsx'
 import { WorkoutSessions } from '@/pages/WorkoutSessions.jsx'
 import { WorkoutTemplates } from '@/pages/WorkoutTemplates.jsx'
 
-import HomeIcon from '@/assets/icons/home.svg?react'
-import CalendarIcon from '@/assets/icons/calendar.svg?react'
-import FileIcon from '@/assets/icons/file.svg?react'
+import HomeIcon from '@/assets/icons/navbar/home.svg?react'
+import CalendarIcon from '@/assets/icons/navbar/calendar.svg?react'
+import FileIcon from '@/assets/icons/navbar/file.svg?react'
 
 export const routes = [
   {
