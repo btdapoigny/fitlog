@@ -1,0 +1,54 @@
+.cta {
+  @include fluid-props(padding, 16px, 18px);
+  @include fluid-props(gap, 15px, 20px);
+  display: flex;
+  border-radius: 15px;
+  background-color: $color-white;
+  box-shadow: 0px 3.5px 5.5px 0px rgba(0, 0, 0, .02);
+
+  @media (max-width: $desktop-breakpoint - 1px) {
+    flex-direction: column;
+  }
+
+  @media (min-width: $desktop-breakpoint) {
+    justify-content: space-between;
+  }
+
+  &__content {
+    @include fluid-props(gap, 2px, 4px);
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+
+    &__uptitle {
+      @extend %small-title;
+    }
+    
+    &__title {
+      @extend %title;
+      @include fluid-props(margin-bottom, 1px, 2px);
+    }
+
+    &__description {
+      @extend %paragraph;
+
+      &:not(:last-child) {
+        @include fluid-props(margin-bottom, 20px, 40px);
+      }
+    }
+
+    .button {
+      margin-top: auto;
+    }
+  }
+
+  &__image {
+    @include fluid-props(max-height, 200px, 250px);
+    object-fit: cover;
+    border-radius: 10px;
+
+    @media (min-width: $desktop-breakpoint) {
+      order: 2;
+    }
+  }
+}
