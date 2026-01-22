@@ -1,7 +1,7 @@
 body {
-  @include fluid-props(padding-top, 15px, 30px);
+  @include fluid-props(padding-top, 20px, 30px);
   @include fluid-props(padding-left padding-right, 20px, 40px);
-  @include fluid-props(padding-bottom, 30px, 60px);
+  @include fluid-props(padding-bottom, 100px, 115px);
 }
 
 header {
