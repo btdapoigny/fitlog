@@ -1,4 +1,4 @@
-import { Button } from "../atoms/Button";
+import { Button } from '@/components/atoms/Button'
 
 export function CTA({ uptitle, title, description, button, image }) {
   return (
