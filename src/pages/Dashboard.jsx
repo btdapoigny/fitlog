@@ -1,3 +1,81 @@
+import { InfoItem } from '@/components/molecules/InfoItem'
+import { CTA } from '@/components/organisms/CTA'
+import { WorkoutsList } from '@/components/organisms/WorkoutsList'
+
+import WorkoutImage from '@/assets/img/workout.jpg'
+import PlanningImage from '@/assets/img/planning.jpg'
+import CheckIcon from '@/assets/icons/stats/check.svg?react'
+import ChartTrendIcon from '@/assets/icons/stats/chart-trend.svg?react'
+import NextIcon from '@/assets/icons/stats/next.svg?react'
+import ChartIcon from '@/assets/icons/stats/chart.svg?react'
+
 export function Dashboard() {
-  
+  const workoutSessionCTA = {
+    uptitle: "Nouvelle séance",
+    title: "Démarrer une séance",
+    description: "Commencer à rentrer les données d’une nouvelle séance.",
+    image: { src: WorkoutImage, alt: "Séance d'entrainement" },
+    button: {
+      label: "Démarrer ma séance",
+      path: "/seances"
+    }
+  }
+
+  const workoutTemplatesCTA = {
+    uptitle: "Nouveau modèle",
+    title: "Créer un nouveau modèle" ,
+    description:"Ajouter un modèle de séance à utiliser lors de l’ajout de nouvelles séances.",
+    image: { src: PlanningImage, alt: "Planification de l'entrainement" },
+    button: {
+      label: "Créer mon modèle",
+      path: "/modeles"
+    }
+  }
+
+  const workoutListColumns = ['Nom', 'Date', 'Exercices', 'Total séries', 'Total répétitions', 'Total volume']
+
+  const workoutsListData = [
+    {
+      id: 1,
+      name: 'Push',
+      uptitle: 'Focus force',
+      date: '12 janvier 2026',
+      exercices: 6,
+      totalSets: 20,
+      totalReps: 214,
+      totalVolume: 234
+    },
+    {
+      id: 2,
+      name: 'Push',
+      uptitle: null,
+      date: '12 janvier 2026',
+      exercices: 6,
+      totalSets: 20,
+      totalReps: 214,
+      totalVolume: 234
+    },
+    {
+      id: 3,
+      name: 'Push',
+      uptitle: 'Focus force',
+      date: '12 janvier 2026',
+      exercices: 6,
+      totalSets: 20,
+      totalReps: 214,
+      totalVolume: 234
+    },
+  ]
+
+  return (
+    <>
+      <InfoItem title="Séances de la semaine" value="3" reference="5" progress={ 60 } icon={ CheckIcon } />
+      <InfoItem title="Volume total de la semaine" value="3 565kg" trendPercentage={ 2 } icon={ ChartTrendIcon } />
+      <InfoItem title="Prochaine séance" value="Push" icon={ NextIcon } />
+      <InfoItem title="Total des séances" value="34" icon={ ChartIcon } />
+      <CTA { ...workoutSessionCTA } />
+      <CTA { ...workoutTemplatesCTA } />
+      <WorkoutsList title="Dernières séances" columns={ workoutListColumns } data={ workoutsListData } button={{ label: 'Voir tout', path: '/seances' }} emptyMessage="Aucune séance enregistrée." />
+    </>
+  )
 }
