@@ -1,0 +1,60 @@
+.info-item {
+  @extend %white-background;
+  @include fluid-props(padding-top padding-bottom, 12px, 14px);
+  @include fluid-props(padding-left padding-right, 16px, 18px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &--reduced {
+    @include fluid-props(padding-top padding-bottom, 10px, 12px); 
+  }
+
+  &__content {
+    position: relative;
+
+    &__title {
+      @extend %small-title;
+      @include fluid-props(margin-bottom, 2px, 4px);
+    }
+
+    &__value {
+      @include fluid-props(font-size, 16px, 18px);
+      line-height: 140%;
+      font-weight: $font-weight-bold;
+
+      &__reference {
+        color: $color-grey;
+      }
+
+      &__trend {
+        @include fluid-props(font-size, 14px, 14px);
+        @include fluid-props(margin-left, 2px, 4px);
+        position: relative;
+        display: inline-block;
+        top: -1px;
+
+        &.green {
+          color: $color-green
+        }
+
+        &.red {
+          color: $color-red
+        }
+      }
+    }
+
+    .progress-bar {
+      @include fluid-props(margin-top, 4px, 6px);
+    }
+  }
+
+  &__icon {
+    @include fluid-props(width height, 40px, 45px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: $color-primary;
+  }
+}
