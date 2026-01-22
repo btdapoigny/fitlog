@@ -1,0 +1,54 @@
+.workouts-list {
+  @extend %white-background;
+  @include fluid-props(padding-top padding-bottom, 20px, 24px);
+  @include fluid-props(padding-left padding-right, 11px, 12px);
+
+  &, &__content {
+    overflow: auto;
+  }
+
+  &__header {
+    @include fluid-props(padding-left padding-right, 11px, 12px);
+    @include fluid-props(margin-bottom, 20px, 25px);
+    display: flex;
+    justify-content: space-between;
+
+    &__title {
+      @extend %title;
+    }
+  }
+
+  &__content {
+    &__notice {
+      @extend %paragraph;
+      @include fluid-props(padding-left padding-right, 11px, 12px);
+    }
+
+    &__header, &__list {
+      @media (max-width: $laptop-breakpoint) {
+        @include fluid-props(min-width, 900px, 900px);
+      }
+    }
+
+    &__header {
+      @include fluid-props(padding-left padding-right, 11px, 12px);
+
+      &__inner {
+        @extend %workout-list-grid;
+        @include fluid-props(padding-top padding-bottom, 10px, 12px);
+  
+        span {
+          @include fluid-props(font-size, 10px, 12px);
+          color: $color-grey;
+          text-transform: uppercase;
+          font-weight: $font-weight-bold;
+        }
+      }
+    }
+
+    &__list {
+      display: grid;
+      grid-auto-rows: 1fr;
+    }
+  }
+}
