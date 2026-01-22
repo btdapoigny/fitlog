@@ -1,0 +1,40 @@
+.workout-item {
+  @include fluid-props(padding-left padding-right, 11px, 12px);
+  display: grid;
+  border-radius: 10px;
+  transition: background-color .2s cubic-bezier(0.73, 1, 0.68, 1);
+
+  &:last-child {
+    .workout-item__inner {
+      border-bottom: solid 2px $color-background;
+    }
+  }
+
+  &:hover {
+    background-color: $color-background; 
+  }
+
+  &__inner {
+    @extend %workout-list-grid;
+    @include fluid-props(padding-top padding-bottom, 10px, 12px);
+    border-top: solid 2px $color-background;
+    align-items: center;
+  }
+
+  span {
+    @include fluid-props(font-size, 14px, 14px);
+    line-height: 140%;
+    font-weight: $font-weight-bold;
+  }
+
+  &__name {
+    @include fluid-props(gap, 2px, 2px);
+    display: flex;
+    flex-direction: column;
+
+    &__uptitle {
+      @include fluid-props(font-size, 10px, 12px);
+      color: $color-grey;
+    }
+  }
+}
