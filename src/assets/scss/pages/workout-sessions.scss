@@ -1,0 +1,20 @@
+.workout-sessions {
+  @include fluid-props(gap, 18px, 24px);
+  display: grid;
+
+  @media (min-width: $small-breakpoint) {
+    grid-template-columns: repeat(2, 1fr);
+
+    .cta, .workouts-list {
+      grid-column: 2 span;
+    }
+  }
+
+  @media (min-width: $tablet-breakpoint) {
+    grid-template-columns: repeat(4, 1fr);
+
+    .workouts-list {
+      grid-column: 4 span;
+    }
+  }
+}
