@@ -1,5 +1,5 @@
 import { Button } from '@/components/atoms/Button'
-import { WorkoutItem } from '@/components/molecules/WorkoutItem'
+import { WorkoutSessionItem } from '@/components/molecules/WorkoutSessionItem'
 
 export function WorkoutSessionsList({ title, columns, data, button, emptyMessage }) {
   return (
@@ -18,7 +18,7 @@ export function WorkoutSessionsList({ title, columns, data, button, emptyMessage
               </div>
             </div>
             <div className="workout-sessions-list__content__list">
-              { data.map(item => <WorkoutItem key={ item.id } { ...item } />) }
+              { data.map(item => <WorkoutSessionItem key={ item.id } { ...item } />) }
             </div>
           </>
         }

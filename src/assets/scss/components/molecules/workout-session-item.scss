@@ -1,11 +1,11 @@
-.workout-item {
+.workout-session-item {
   @include fluid-props(padding-left padding-right, 11px, 12px);
   display: grid;
   border-radius: 10px;
   transition: background-color .2s cubic-bezier(0.73, 1, 0.68, 1);
 
   &:last-child {
-    .workout-item__inner {
+    .workout-session-item__inner {
       border-bottom: solid 2px $color-background;
     }
   }
