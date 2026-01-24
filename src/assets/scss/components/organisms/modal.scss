@@ -1,0 +1,41 @@
+.modal {
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(3px);
+  background-color: rgba($color-text, .2);
+  z-index: $z-index-modal;
+  cursor: pointer;
+
+  &__inner {
+    @include fluid-props(padding, 24px, 30px);
+    @include fluid-props(width, 350px, 420px);
+    max-height: 80%;
+    border-radius: 15px;
+    background-color: $color-white;
+    overflow: auto;
+    cursor: auto;
+
+    form {
+      @include fluid-props(gap, 15px, 20px);
+      display: grid;
+      align-items: center;
+
+      button[type="submit"] {
+        margin: 0 auto;
+      }
+    }
+  }
+
+  &__title {
+    @include fluid-props(font-size, 18px, 22px);
+    @include fluid-props(margin-bottom, 20px, 30px);
+    line-height: 140%;
+    text-align: center;
+  }
+}
