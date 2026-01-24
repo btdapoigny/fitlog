@@ -1,6 +1,6 @@
 import { InfoItem } from '@/components/molecules/InfoItem'
 import { CTA } from '@/components/organisms/CTA'
-import { WorkoutsList } from '@/components/organisms/WorkoutsList'
+import { WorkoutSessionsList } from '@/components/organisms/WorkoutSessionsList'
 
 import WorkoutImage from '@/assets/img/workout.jpg'
 import PlanningImage from '@/assets/img/planning.jpg'
@@ -32,9 +32,9 @@ export function Dashboard() {
     }
   }
 
-  const workoutListColumns = ['Nom', 'Date', 'Exercices', 'Total séries', 'Total répétitions', 'Total volume']
+  const workoutSessionsListColumns = ['Nom', 'Date', 'Exercices', 'Total séries', 'Total répétitions', 'Total volume']
 
-  const workoutsListData = [
+  const workoutSessionsListData = [
     {
       id: 1,
       name: 'Push',
@@ -75,7 +75,7 @@ export function Dashboard() {
       <InfoItem title="Total des séances" value="34" icon={ ChartIcon } />
       <CTA { ...workoutSessionCTA } />
       <CTA { ...workoutTemplatesCTA } />
-      <WorkoutsList title="Dernières séances" columns={ workoutListColumns } data={ workoutsListData } button={{ label: 'Voir tout', path: '/seances' }} emptyMessage="Aucune séance enregistrée." />
+      <WorkoutSessionsList title="Dernières séances" columns={ workoutSessionsListColumns } data={ workoutSessionsListData } button={{ label: 'Voir tout', path: '/seances' }} emptyMessage="Aucune séance enregistrée." />
     </>
   )
 }

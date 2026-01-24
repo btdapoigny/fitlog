@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Input } from '@/components/atoms/Input'
 import { Button } from '../components/atoms/Button'
 import { CTA } from '@/components/organisms/CTA'
-import { WorkoutsList } from '@/components/organisms/WorkoutsList'
+import { WorkoutSessionsList } from '@/components/organisms/WorkoutSessionsList'
 import { Modal } from '@/components/organisms/Modal'
 
 import WorkoutImage from '@/assets/img/workout.jpg'
@@ -40,9 +40,9 @@ export function WorkoutSessions() {
     }
   }
 
-  const workoutListColumns = ['Nom', 'Date', 'Exercices', 'Total séries', 'Total répétitions', 'Total volume']
+  const workoutSessionsListColumns = ['Nom', 'Date', 'Exercices', 'Total séries', 'Total répétitions', 'Total volume']
 
-  const workoutsListData = [
+  const workoutSessionsListData = [
     {
       id: 1,
       name: 'Push',
@@ -79,7 +79,7 @@ export function WorkoutSessions() {
     <>
       <CTA { ...workoutSessionCTA } />
       <CTA { ...workoutTemplatesCTA } />
-      <WorkoutsList title="Mes séances" columns={ workoutListColumns } data={ workoutsListData } emptyMessage="Aucune séance enregistrée." />
+      <WorkoutSessionsList title="Mes séances" columns={ workoutSessionsListColumns } data={ workoutSessionsListData } emptyMessage="Aucune séance enregistrée." />
       { showModal && 
         <Modal title="Ajouter une séance" closeModal={ () => setShowModal(!showModal) }>
           <form onSubmit={ submitForm }>

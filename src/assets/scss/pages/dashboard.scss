@@ -5,7 +5,7 @@
   @media (min-width: $small-breakpoint) {
     grid-template-columns: repeat(2, 1fr);
 
-    .cta, .workouts-list {
+    .cta, .workout-sessions-list {
       grid-column: 2 span;
     }
   }
@@ -17,7 +17,7 @@
       grid-column: 2 span;
     }
 
-    .workouts-list {
+    .workout-sessions-list {
       grid-column: 4 span;
     }
   }
