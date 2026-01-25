@@ -1,12 +1,16 @@
+import { classList } from '@/utils/classList'
 import { ProgressBar } from '@/components/atoms/ProgressBar'
 
-export function InfoItem({ title, value, reference, trendPercentage, progress, icon }) {
+export function InfoItem({ title, value, reference, trendPercentage = 0, progress, icon }) {
   const Icon = icon
-  const trendPercentagePrefix = trendPercentage > 0 ? '+' : ''
-  const trendPercentageClass = trendPercentage > 0 ? 'green' : 'red'
+  const trend = {
+    prefix: trendPercentage > 0 ? '+' : '',
+    class: trendPercentage > 0 ? 'green' : 'red',
+    percentage: trendPercentage
+  }
 
   return (
-    <div className={`info-item ${ progress ? 'info-item--reduced' : '' }`}>
+    <div className={ classList('info-item', { 'info-item--reduced': progress }) }>
       <div className="info-item__content">
         <span className="info-item__content__title">{ title }</span>
         <span className="info-item__content__value">
@@ -17,9 +21,9 @@ export function InfoItem({ title, value, reference, trendPercentage, progress, i
               <span className="info-item__content__value__reference">{ reference }</span>
             </>
           )}
-          { (trendPercentage && trendPercentage !== 0) &&
-            <span className={`info-item__content__value__trend ${ trendPercentageClass }`}>
-              {`${ trendPercentagePrefix + trendPercentage.toString() }%`}
+          { trend.percentage !== 0 &&
+            <span className={ classList('info-item__content__value__trend', trend.class) }>
+              { `${ trend.prefix + trend.percentage.toString() }%` }
             </span>
           }
         </span>
