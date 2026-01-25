@@ -1,0 +1,36 @@
+.workout-templates-list {
+  @extend %white-background;
+  @include fluid-props(padding, 20px, 24px);
+
+  &__title {
+    @extend %title;
+    @include fluid-props(margin-bottom, 4px, 8px);
+  }
+
+  &__description {
+    @extend %paragraph;
+    @include fluid-props(margin-bottom, 18px, 24px);
+  }
+
+  &__wrapper {
+    @include fluid-props(column-gap, 18px, 24px);
+    @include fluid-props(gap, 30px, 36px);
+    display: grid;
+
+    @media (min-width: $small-breakpoint) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: $laptop-breakpoint) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (min-width: $desktop-breakpoint) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .add-item {
+      @include fluid-props(min-height, 200px, 250px);
+    }
+  }
+}
