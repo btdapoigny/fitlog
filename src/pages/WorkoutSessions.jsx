@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import { useToggle } from '@/hooks/useToggle'
+
 import { Input } from '@/components/atoms/Input'
 import { Button } from '../components/atoms/Button'
 import { CTA } from '@/components/organisms/CTA'
@@ -11,11 +13,11 @@ import PlanningImage from '@/assets/img/planning.jpg'
 
 export function WorkoutSessions() {
   const [toggleTemplate, setToggleTemplate] = useState(false)
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, toggleShowModal] = useToggle(false)
 
   const submitForm = (event) => {
     event.preventDefault()
-    setShowModal(false)
+    toggleShowModal()
   }
 
   const workoutSessionCTA = {
@@ -25,7 +27,7 @@ export function WorkoutSessions() {
     image: { src: WorkoutImage, alt: "Séance d'entrainement" },
     button: {
       label: "Démarrer ma séance",
-      handleClick: () => setShowModal(true)
+      handleClick: toggleShowModal
     }
   }
 
@@ -81,7 +83,7 @@ export function WorkoutSessions() {
       <CTA { ...workoutTemplatesCTA } />
       <WorkoutSessionsList title="Mes séances" columns={ workoutSessionsListColumns } data={ workoutSessionsListData } emptyMessage="Aucune séance enregistrée." />
       { showModal && 
-        <Modal title="Ajouter une séance" closeModal={ () => setShowModal(!showModal) }>
+        <Modal title="Ajouter une séance" closeModal={ toggleShowModal }>
           <form onSubmit={ submitForm }>
             <Input label="Date" type="date" />
             <Input label="Utiliser un modèle" type="checkbox" value={ toggleTemplate } handleChange={ setToggleTemplate } />

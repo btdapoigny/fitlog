@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useToggle } from '@/hooks/useToggle'
+
 import { Input } from '@/components/atoms/Input'
 import { Button } from '../components/atoms/Button'
 import { WorkoutTemplatesList } from '@/components/organisms/WorkoutTemplatesList'
@@ -9,11 +10,11 @@ import BackImage from '@/assets/img/back.jpg'
 import LegsImage from '@/assets/img/legs.jpg'
 
 export function WorkoutTemplates() {
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, toggleShowModal] = useToggle(false)
 
   const submitForm = (event) => {
     event.preventDefault()
-    setShowModal(false)
+    toggleShowModal()
   }
 
   const workoutTemplatesListData = {
@@ -45,9 +46,9 @@ export function WorkoutTemplates() {
 
   return (
     <>
-      <WorkoutTemplatesList { ...workoutTemplatesListData } handleAddItem={ () => setShowModal(true) } />
+      <WorkoutTemplatesList { ...workoutTemplatesListData } handleAddItem={ toggleShowModal } />
       { showModal &&
-        <Modal title="Ajouter un modèle" closeModal={ () => setShowModal(!showModal) }>
+        <Modal title="Ajouter un modèle" closeModal={ toggleShowModal }>
           <form onSubmit={ submitForm }>
             <Input label="Nom du modèle" type="text" placeholder="Ex. Legs" />
             <Input label="Titre secondaire" type="text" placeholder="Ex. Focus quadriceps" />
