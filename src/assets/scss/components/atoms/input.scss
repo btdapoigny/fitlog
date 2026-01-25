@@ -46,6 +46,11 @@
     align-items: center;
     justify-content: center;
     border-style: dashed;
+    transition: background-color .2s cubic-bezier(0.73, 1, 0.68, 1);
+
+    &:hover {
+      background-color: $color-background;
+    }
 
     input {
       cursor: pointer;
