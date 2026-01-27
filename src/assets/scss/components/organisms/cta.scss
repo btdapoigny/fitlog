@@ -32,7 +32,7 @@
       @extend %paragraph;
 
       &:not(:last-child) {
-        @include fluid-props(margin-bottom, 20px, 40px);
+        @include fluid-props(margin-bottom, 15px, 25px);
       }
     }
 
@@ -47,6 +47,7 @@
     border-radius: 12px;
 
     @media (min-width: $desktop-breakpoint) {
+      @include fluid-props(max-height, 170px, 170px);
       order: 2;
     }
   }
