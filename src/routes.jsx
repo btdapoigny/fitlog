@@ -1,7 +1,8 @@
 import { Dashboard } from '@/pages/Dashboard.jsx'
+import { WorkoutSession } from '@/pages/WorkoutSession.jsx'
 import { WorkoutSessions } from '@/pages/WorkoutSessions.jsx'
-import { WorkoutTemplates } from '@/pages/WorkoutTemplates.jsx'
 import { WorkoutTemplate } from '@/pages/WorkoutTemplate.jsx'
+import { WorkoutTemplates } from '@/pages/WorkoutTemplates.jsx'
 
 import HomeIcon from '@/assets/icons/navbar/home.svg?react'
 import CalendarIcon from '@/assets/icons/navbar/calendar.svg?react'
@@ -19,12 +20,28 @@ export const routes = [
   },
   {
     path: '/seances', 
-    element: <WorkoutSessions />,
     handle: {
       title: 'Séances',
-      class: 'workout-sessions',
       icon: CalendarIcon,
     },
+    children: [
+      {
+        index: true,
+        element: <WorkoutSessions />,
+        handle: {
+          title: 'Séances',
+          class: 'workout-sessions',
+        },
+      },
+      {
+        path: ':id',
+        element: <WorkoutSession />,
+        handle: {
+          title: 'Détail de la séance',
+          class: 'workout-detail',
+        },
+      },
+    ]
   },
   {
     path: '/modeles', 
