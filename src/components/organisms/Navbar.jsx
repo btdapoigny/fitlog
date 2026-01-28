@@ -1,14 +1,18 @@
 import { useState, useRef, useEffect } from 'react'
 import { NavLink, useLocation } from 'react-router'
+
 import { routes } from '@/routes.jsx'
+
+import { getRootPath } from '@/utils/getRootPath'
 
 export function Navbar() {
   const [selectorRect, setSelectorRect] = useState(null)
   const itemRefs = useRef([])
   const location = useLocation()
 
+  // Get/set position and size of the 'active' selector
   useEffect(() => {
-    const activeIndex = routes.findIndex((route) => route.path === location.pathname)
+    const activeIndex = routes.findIndex((route) => route.path === getRootPath(location.pathname))
     const activeElement = itemRefs.current[activeIndex]
 
     const updateSelectorRectState = () => {
