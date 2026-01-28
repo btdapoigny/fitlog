@@ -1,0 +1,43 @@
+.exercice-item {
+  @include fluid-props(padding, 16px, 18px);
+  position: relative;
+  border-radius: 15px;
+  background-color: $color-background;
+
+  &:hover {
+    .exercice-item__actions {
+      opacity: 1;
+    }
+  }
+
+  &__actions {
+    @include fluid-props(gap, 10px, 10px);
+    display: flex;
+    justify-content: flex-end;
+    transition: opacity .2s cubic-bezier(0.73, 1, 0.68, 1);
+
+    @media (max-width: $laptop-breakpoint) {
+      @include fluid-props(margin-bottom, 16px, 18px);
+    }
+    
+    @media (min-width: $laptop-breakpoint) {
+      @include fluid-props(top right, 16px, 18px);
+      position: absolute;
+      opacity: 0;
+    }
+
+    &.is-visible {
+      opacity: 1;
+    }
+  }
+
+  &__infos {
+    @include fluid-props(gap, 10px, 15px);
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: $laptop-breakpoint) {
+      flex-direction: row;
+    }
+  }
+}
