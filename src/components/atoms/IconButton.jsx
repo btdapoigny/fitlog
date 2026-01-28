@@ -10,14 +10,14 @@ const ICONS = {
   save: SaveIcon
 }
 
-export function IconButton({ icon, handleClick, }) {
+export function IconButton({ icon, handleClick, isSmall }) {
   const Icon = ICONS[icon]
   const isDanger = icon === 'delete'
 
   if (!Icon) return null
 
   return (
-    <button className={classList('icon-button', { 'icon-button--danger': isDanger })} type="button" onClick={ handleClick }>
+    <button className={classList('icon-button', { 'icon-button--danger': isDanger, 'icon-button--small': isSmall })} type="button" onClick={ handleClick }>
       <Icon />
     </button>
   )

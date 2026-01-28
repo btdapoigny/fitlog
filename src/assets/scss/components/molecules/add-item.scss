@@ -27,3 +27,23 @@
     }
   }
 }
+
+.add-item--small {
+  @include fluid-props(padding-top padding-bottom, 16px, 18px);
+  
+  &:hover {
+    background-color: $color-white;
+  }
+
+  .add-item__content {
+    @include fluid-props(gap, 8px, 10px);
+
+    svg {
+      @include fluid-props(width height, 16px, 18px);
+    }
+
+    span {
+      @include fluid-props(font-size, 14px, 16px);
+    }
+  }
+}

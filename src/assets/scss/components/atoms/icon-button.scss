@@ -32,3 +32,11 @@
     transition: fill .2s cubic-bezier(0.73, 1, 0.68, 1);
   }
 }
+
+.icon-button--small {
+  @include fluid-props(padding, 6px, 4px);
+
+  svg {
+    @include fluid-props(width height, 12px, 10px);
+  }
+}
