@@ -1,0 +1,14 @@
+.exercices-list {
+  @extend %white-background;
+  @include fluid-props(padding, 20px, 24px);
+
+  &__title {
+    @extend %title;
+    @include fluid-props(margin-bottom, 15px, 20px);
+  }
+
+  &__wrapper {
+    @include fluid-props(gap, 15px, 20px);
+    display: grid;
+  }
+}
