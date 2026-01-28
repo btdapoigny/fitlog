@@ -70,7 +70,7 @@ export function Dashboard() {
   return (
     <>
       <InfoItem title="Séances de la semaine" value="3" reference="5" progress={ 60 } icon={ CheckIcon } />
-      <InfoItem title="Volume total de la semaine" value="3 565kg" trendPercentage={ 2 } icon={ ChartTrendIcon } />
+      <InfoItem title="Volume total de la semaine" value="3565" suffix="kg" trendPercentage={ 2 } icon={ ChartTrendIcon } />
       <InfoItem title="Prochaine séance" value="Push" icon={ NextIcon } />
       <InfoItem title="Total des séances" value="34" icon={ ChartIcon } />
       <CTA { ...workoutSessionCTA } />
