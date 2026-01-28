@@ -2,12 +2,18 @@
   @extend %white-background;
   @include fluid-props(padding-top padding-bottom, 16px, 18px);
   @include fluid-props(padding-left padding-right, 20px, 24px);
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   &--reduced {
-    @include fluid-props(padding-top padding-bottom, 10px, 12px); 
+    @include fluid-props(padding-top padding-bottom, 10px, 12px);
+
+    .icon-button {
+      @include fluid-props(top right, 10px, 10px);
+      position: absolute;
+    }
   }
 
   &__content {
@@ -45,7 +51,7 @@
     }
 
     .progress-bar {
-      @include fluid-props(margin-top, 4px, 6px);
+      @include fluid-props(margin-top, 8px, 10px);
     }
   }
 

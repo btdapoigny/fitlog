@@ -1,6 +1,7 @@
 .exercice-item {
   @include fluid-props(padding, 16px, 18px);
   position: relative;
+  display: grid;
   border-radius: 15px;
   background-color: $color-background;
 
@@ -8,6 +9,10 @@
     .exercice-item__actions {
       opacity: 1;
     }
+  }
+
+  &, &__list {
+    @include fluid-props(gap, 10px, 15px);
   }
 
   &__actions {
@@ -31,8 +36,7 @@
     }
   }
 
-  &__infos {
-    @include fluid-props(gap, 10px, 15px);
+  &__list {
     display: flex;
     flex-direction: column;
 

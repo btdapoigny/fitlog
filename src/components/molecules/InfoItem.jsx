@@ -1,8 +1,10 @@
 import { classList } from '@/utils/classList'
+
+import { IconButton } from '@/components/atoms/IconButton'
 import { ProgressBar } from '@/components/atoms/ProgressBar'
 import { EditableContent } from '@/components/atoms/EditableContent'
 
-export function InfoItem({ title, value, placeholder, suffix, reference, trendPercentage = 0, progress, icon, editable = false, type }) {
+export function InfoItem({ title, value, placeholder, suffix, reference, trendPercentage = 0, progress, icon, type, removeHandle, isEditable = false, isRemovable = false }) {
   const Icon = icon
   const trend = {
     prefix: trendPercentage > 0 ? '+' : '',
@@ -14,7 +16,7 @@ export function InfoItem({ title, value, placeholder, suffix, reference, trendPe
     <div className={ classList('info-item', { 'info-item--reduced': progress }) }>
       <div className="info-item__content">
         <span className="info-item__content__title">{ title }</span>
-        { !editable && 
+        { !isEditable && 
           <span className="info-item__content__value">
             { value }
             { reference && (
@@ -31,7 +33,7 @@ export function InfoItem({ title, value, placeholder, suffix, reference, trendPe
             }
           </span>
         }
-        { editable &&
+        { isEditable &&
           <>
             <EditableContent value={ value } placeholder={ placeholder } type={ type } />
             { suffix && <span className="info-item__content__value"> { suffix }</span> }
@@ -40,6 +42,9 @@ export function InfoItem({ title, value, placeholder, suffix, reference, trendPe
         { progress && <ProgressBar value={ progress } /> }
       </div>
       { icon && <div className="info-item__icon"><Icon /></div> }
+      { (isEditable && isRemovable) &&
+        <IconButton icon="delete" isSmall={ true } handleClick={ removeHandle } />
+      }
     </div >
   )
 }
