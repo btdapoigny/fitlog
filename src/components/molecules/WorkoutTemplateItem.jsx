@@ -3,7 +3,7 @@ import { Button } from "@/components/atoms/Button"
 
 import WorkoutThumbnail from '@/assets/img/workout-thumbnail.svg'
 
-export function WorkoutTemplateItem({ title, uptitle, description, slug, thumbnail }) {
+export function WorkoutTemplateItem({ id, title, uptitle, description, thumbnail }) {
   return (
     <article className="workout-template-item">
       <div className={ classList('workout-template-item__image', { 'has-gradiant' : thumbnail }) }>
@@ -13,7 +13,7 @@ export function WorkoutTemplateItem({ title, uptitle, description, slug, thumbna
         { uptitle && <span className="workout-template-item__content__uptitle">{ uptitle }</span> }
         <h3 className="workout-template-item__content__title">{ title }</h3>
         <p className="workout-template-item__content__description">{ description }</p>
-        <Button label="Voir plus" path={ `/modeles/${ slug }` } />
+        <Button label="Voir plus" path={ `/modeles/${ id }` } />
       </div>
     </article>
   )

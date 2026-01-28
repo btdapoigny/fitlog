@@ -1,17 +1,19 @@
-export function WorkoutSessionItem({ ...props }) {
+import { Link } from 'react-router'
+
+export function WorkoutSessionItem({ id, name, uptitle, date, exercices, totalSets, totalReps, totalVolume }) {
   return (
-    <div className="workout-session-item">
+    <Link className="workout-session-item" to={ `/seances/${ id }` }>
       <div className="workout-session-item__inner">
         <div className="workout-session-item__name">
-          <span>{ props.name }</span>
-          { props.uptitle && <span className="workout-session-item__name__uptitle">{ props.uptitle }</span> }
+          <span>{ name }</span>
+          { uptitle && <span className="workout-session-item__name__uptitle">{ uptitle }</span> }
         </div>
-        <span>{ props.date }</span>
-        <span>{ props.exercices }</span>
-        <span>{ props.totalSets }</span>
-        <span>{ props.totalReps }</span>
-        <span>{ props.totalVolume }kg</span>
+        <span>{ date }</span>
+        <span>{ exercices }</span>
+        <span>{ totalSets }</span>
+        <span>{ totalReps }</span>
+        <span>{ totalVolume } kg</span>
       </div>
-    </div>
+    </Link>
   )
 }
