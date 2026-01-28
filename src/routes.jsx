@@ -46,7 +46,7 @@ export const routes = [
         element: <WorkoutTemplate />,
         handle: {
           title: 'Détail du modèle',
-          class: 'workout-template',
+          class: 'workout-detail',
         },
       }
     ]
