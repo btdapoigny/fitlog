@@ -1,0 +1,32 @@
+.workout-template {
+  @include fluid-props(column-gap, 30px, 40px);
+  @include fluid-props(row-gap, 20px, 30px);
+  display: grid;
+
+  @media (min-width: $tablet-breakpoint) {
+    grid-template-columns: repeat(4, 1fr);
+
+    > .cta {
+      grid-column: 2 span;
+      grid-row: 4 span;
+    }
+
+    > .info-item {
+      grid-column: 2 span;
+    }
+    
+    > .exercices-list {
+      grid-column: 4 span;
+    }
+  }
+
+  @media (min-width: $desktop-breakpoint) {
+    > .cta {
+      grid-row: 2 span;
+    }
+
+    > .info-item {
+      grid-column: 1 span;
+    }
+  }
+}
