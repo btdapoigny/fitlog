@@ -1,7 +1,8 @@
 import { classList } from '@/utils/classList'
 import { ProgressBar } from '@/components/atoms/ProgressBar'
+import { EditableContent } from '@/components/atoms/EditableContent'
 
-export function InfoItem({ title, value, suffix, reference, trendPercentage = 0, progress, icon }) {
+export function InfoItem({ title, value, placeholder, suffix, reference, trendPercentage = 0, progress, icon, editable = false, type }) {
   const Icon = icon
   const trend = {
     prefix: trendPercentage > 0 ? '+' : '',
@@ -13,21 +14,29 @@ export function InfoItem({ title, value, suffix, reference, trendPercentage = 0,
     <div className={ classList('info-item', { 'info-item--reduced': progress }) }>
       <div className="info-item__content">
         <span className="info-item__content__title">{ title }</span>
-        <span className="info-item__content__value">
-          { value }
-          { reference && (
-            <>
-              {' / '}
-              <span className="info-item__content__value__reference">{ reference }</span>
-            </>
-          )}
-          { suffix && <span> { suffix }</span> }
-          { trend.percentage !== 0 &&
-            <span className={ classList('info-item__content__value__trend', trend.class) }>
-              { `${ trend.prefix + trend.percentage.toString() }%` }
-            </span>
-          }
-        </span>
+        { !editable && 
+          <span className="info-item__content__value">
+            { value }
+            { reference && (
+              <>
+                {' / '}
+                <span className="info-item__content__value__reference">{ reference }</span>
+              </>
+            )}
+            { suffix && <span> { suffix }</span> }
+            { trend.percentage !== 0 &&
+              <span className={ classList('info-item__content__value__trend', trend.class) }>
+                { `${ trend.prefix + trend.percentage.toString() }%` }
+              </span>
+            }
+          </span>
+        }
+        { editable &&
+          <>
+            <EditableContent value={ value } placeholder={ placeholder } type={ type } />
+            { suffix && <span className="info-item__content__value"> { suffix }</span> }
+          </>
+        }
         { progress && <ProgressBar value={ progress } /> }
       </div>
       { icon && <div className="info-item__icon"><Icon /></div> }
