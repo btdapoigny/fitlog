@@ -11,23 +11,23 @@ import ChartIcon from '@/assets/icons/stats/chart.svg?react'
 
 export function Dashboard() {
   const workoutSessionCTA = {
-    uptitle: "Nouvelle séance",
-    title: "Démarrer une séance",
-    description: "Commencer à rentrer les données d’une nouvelle séance.",
+    uptitle: "Séances",
+    title: "Ajouter des séances",
+    description: "Accéder aux séances et tracker sa progression de semaine en semaine.",
     image: { src: WorkoutImage, alt: "Séance d'entrainement" },
     button: {
-      label: "Démarrer ma séance",
+      label: "Voir mes séances",
       path: "/seances"
     }
   }
 
   const workoutTemplatesCTA = {
-    uptitle: "Nouveau modèle",
-    title: "Créer un nouveau modèle" ,
-    description:"Ajouter un modèle de séance à utiliser lors de l’ajout de nouvelles séances.",
+    uptitle: "Modèles",
+    title: "Ajouter des modèles" ,
+    description:"Accéder aux modèles à utiliser lors de l’ajout de nouvelles séances.",
     image: { src: PlanningImage, alt: "Planification de l'entrainement" },
     button: {
-      label: "Créer mon modèle",
+      label: "Voir mes modèles",
       path: "/modeles"
     }
   }

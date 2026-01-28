@@ -32,12 +32,12 @@ export function WorkoutSessions() {
   }
 
   const workoutTemplatesCTA = {
-    uptitle: "Nouveau modèle",
-    title: "Créer un nouveau modèle" ,
-    description:"Ajouter un modèle de séance à utiliser lors de l’ajout de nouvelles séances.",
+    uptitle: "Modèles",
+    title: "Ajouter des modèles" ,
+    description:"Accéder aux modèles à utiliser lors de l’ajout de nouvelles séances.",
     image: { src: PlanningImage, alt: "Planification de l'entrainement" },
     button: {
-      label: "Créer mon modèle",
+      label: "Voir mes modèles",
       path: "/modeles"
     }
   }
