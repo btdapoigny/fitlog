@@ -3,7 +3,7 @@ import { NavLink, useLocation } from 'react-router'
 
 import { routes } from '@/routes.jsx'
 
-import { getRootPath } from '@/utils/getRootPath'
+import { getRootPath } from '@/utils/helpers'
 
 export function Navbar() {
   const [selectorRect, setSelectorRect] = useState(null)

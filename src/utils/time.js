@@ -1,8 +1,8 @@
 /**
  * Convert seconds into a HH:MM format
  * 
- * @param {number} - Seconds to convert
- * @returns {string} - A string in HH:MM format
+ * @param {number} seconds - Seconds to convert
+ * @returns {string} A string in HH:MM format
  */
 export function formatSecondsToHoursMinutes(seconds) {
   const hours = Math.floor(seconds / 3600)
@@ -14,7 +14,7 @@ export function formatSecondsToHoursMinutes(seconds) {
 /**
  * Formats a date string "DD-MM-YYYY" into "D month YYYY" in French.
  *
- * @param {string} dateStr - Date in format "DD-MM-YYYY"
+ * @param {string} dateString - Date in format "DD-MM-YYYY"
  * @returns {string} Formatted date in French
  */
 export function formatDate(dateString) {

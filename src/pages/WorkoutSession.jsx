@@ -1,6 +1,6 @@
 import { useParams } from 'react-router'
 
-import { getProgressPercentage } from '@/utils/getProgressPercentage'
+import { getProgressPercentage } from '@/utils/helpers'
 import { resolveWorkoutSession } from '@/utils/workout'
 
 import { InfoItem } from '@/components/molecules/InfoItem'
