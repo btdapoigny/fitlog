@@ -12,20 +12,21 @@ export function formatSecondsToHoursMinutes(seconds) {
 }
 
 /**
- * Formats a date string "DD-MM-YYYY" into "D month YYYY" in French.
+ * Formats a date string "YYYY-MM-DD" into "D month YYYY" in French.
  *
- * @param {string} dateString - Date in format "DD-MM-YYYY"
+ * @param {string} dateString - Date in format "YYYY-MM-DD"
  * @returns {string} Formatted date in French
  */
 export function formatDate(dateString) {
   if (!dateString) return ''
 
-  const [day, month, year] = dateString.split('-')
-  const date = new Date(year, month - 1, day)
+  const date = new Date(dateString)
+
+  if (isNaN(date)) return ''
 
   return new Intl.DateTimeFormat('fr-FR', {
     day: 'numeric',
     month: 'long',
     year: 'numeric'
-  }).format(date);
+  }).format(date)
 }

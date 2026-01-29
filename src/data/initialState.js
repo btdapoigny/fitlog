@@ -107,7 +107,7 @@ export const workoutSessions = [
   {
     id: 1,
     templateId: 1,
-    date: "12-01-2026",
+    date: "2026-01-12",
     exercices: [
       {
         id: 1,
@@ -148,7 +148,7 @@ export const workoutSessions = [
   {
     id: 2,
     templateId: 2,
-    date: "13-01-2026",
+    date: "2026-01-24",
     exercices: [
       {
         id: 1,
@@ -194,9 +194,8 @@ export const workoutSessions = [
   {
     id: 3,
     templateId: null,
-    date: "13-01-2026",
+    date: "2026-01-27",
     title: "Full body",
-    uptitle: "Focus volume",
     description: "Séance full body, groupe cibés : Pectoraux, dos, jambes.",
     thumbnail: null,
     exercices: [
@@ -234,6 +233,50 @@ export const workoutSessions = [
           { reps: 13 },
           { reps: 13 },
           { reps: 13 },
+        ],
+      },
+    ],
+  },
+  {
+    id: 4,
+    templateId: 3,
+    date: "2026-01-28",
+    exercices: [
+      {
+        id: 1,
+        name: "Leg extension",
+        weight: 95,
+        repsTarget: 12,
+        restTime: 180,
+        sets: [
+          { reps: 12 },
+          { reps: 12 },
+          { reps: 10 },
+        ],
+      },
+      {
+        id: 2,
+        name: "Leg curl",
+        weight: 60,
+        repsTarget: 12,
+        restTime: 180,
+        sets: [
+          { reps: 12 },
+          { reps: 11 },
+          { reps: 10 },
+        ],
+      },
+      {
+        id: 3,
+        name: "Leg press",
+        weight: 160,
+        sets: 3,
+        repsTarget: 12,
+        restTime: 180,
+        sets: [
+          { reps: 12 },
+          { reps: 12 },
+          { reps: 11 },
         ],
       },
     ],
