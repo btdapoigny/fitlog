@@ -1,11 +1,16 @@
 import { useParams } from 'react-router'
 
+import { useToggle } from '@/hooks/useToggle'
+
 import { getProgressPercentage } from '@/utils/helpers'
 import { resolveWorkoutSession } from '@/utils/workout'
 
+import { Input } from '@/components/atoms/Input'
+import { Button } from '../components/atoms/Button'
 import { InfoItem } from '@/components/molecules/InfoItem'
 import { CTA } from '@/components/organisms/CTA'
 import { ExercicesList } from '@/components/organisms/ExercicesList'
+import { Modal } from '@/components/organisms/Modal'
 
 import { workoutTemplates, workoutSessions } from '@/data/initialState'
 
@@ -17,6 +22,8 @@ import TargetIcon from '@/assets/icons/stats/target.svg?react'
 
 export function WorkoutSession() {
   const { id } = useParams()
+  const [showModal, toggleShowModal] = useToggle(false)
+
   const initialSession = workoutSessions.find(session => session.id === parseInt(id))
   const session = resolveWorkoutSession(initialSession, workoutTemplates)
 
@@ -28,7 +35,7 @@ export function WorkoutSession() {
     button: {
       label: session.templateId ? "Voir le modèle" : "Modifier les informations",
       path: session.templateId ? `/modeles/${ session.templateId }` : null,
-      handleClick: session.templateId ? () => {} : null
+      handleClick: session.templateId ? null : toggleShowModal
     }
   }
 
@@ -76,6 +83,11 @@ export function WorkoutSession() {
     }
   })
 
+  const submitForm = (event) => {
+    event.preventDefault()
+    toggleShowModal()
+  }
+
   return (
     <>
       <CTA { ...sessionCTA } />
@@ -84,6 +96,17 @@ export function WorkoutSession() {
       <InfoItem title="Total de répétitions" value={ session.totalReps } reference={ session.totalRepsTarget } icon={ TargetIcon } />
       <InfoItem title="Volume total" value={ session.totalVolume } suffix="kg" icon={ ChartTrendIcon } />
       <ExercicesList title="Exercices" list={ list } handleAddItem={ () => {} } />
+      { showModal &&
+        <Modal title="Modifier la séance" closeModal={ toggleShowModal }>
+          <form onSubmit={ submitForm }>
+            <Input label="Nom de la séance" type="text" placeholder="Ex. Legs" />
+            <Input label="Surtitre" type="text" placeholder="Ex. Focus quadriceps" />
+            <Input label="Description" type="textarea" placeholder="Entrer la description..." />
+            <Input label="Image" type="file" placeholder="Choisir une image" />
+            <Button label="Enregistrer" type="submit" />
+          </form>
+        </Modal>
+      }
     </>
   )
 }

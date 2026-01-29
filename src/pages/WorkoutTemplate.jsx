@@ -32,7 +32,7 @@ export function WorkoutTemplate() {
     image: { src: template.thumbnail, alt: `Séance ${ template.title }` },
     button: {
       label: "Modifier les informations",
-      handleClick: () => toggleShowModal()
+      handleClick: toggleShowModal
     }
   }
 
@@ -98,7 +98,7 @@ export function WorkoutTemplate() {
             <Input label="Titre secondaire" type="text" placeholder="Ex. Focus quadriceps" />
             <Input label="Description" type="textarea" placeholder="Entrer la description..." />
             <Input label="Image" type="file" placeholder="Choisir une image" />
-            <Button label="Ajouter" type="submit" />
+            <Button label="Enregistrer" type="submit" />
           </form>
         </Modal>
       }
