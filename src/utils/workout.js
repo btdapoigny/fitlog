@@ -5,7 +5,7 @@
  * @param {Array} templates - The list of available workout templates
  * @returns {Object} A resolved session ready for display
  */
-export const resolveWorkoutSession = (session, templates) => {
+export function resolveWorkoutSession(session, templates) {
   const template = templates.find(template => template.id === session.templateId)
   const totals = calculateWorkoutStats(session.exercices)
 
@@ -31,7 +31,7 @@ export const resolveWorkoutSession = (session, templates) => {
  * @param {Array<Object>} exercises - Array of exercises from a template or session
  * @returns {Object} totals - Aggregated statistics for the template or session workout
  */
-export const calculateWorkoutStats = (exercices) => {
+export function calculateWorkoutStats(exercices) {
  return exercices.reduce(
     (acc, exercice) => {
       const setsCount = Array.isArray(exercice.sets) ? exercice.sets.length : exercice.sets
@@ -46,4 +46,19 @@ export const calculateWorkoutStats = (exercices) => {
     },
     { totalReps: 0, totalRepsTarget: 0, totalSets: 0, totalVolume: 0, totalDuration: 0 }
   )
+}
+
+/**
+ * Filter sessions of a given week.
+ * 
+ * @param {Array<Object>} sessions - The sessions array to filter
+ * @param {Date} startOfWeek - The start date of the given week
+ * @param {Date} endOfWeek - The end date of the given week
+ * @returns {Array<Object>} A new array containing only the sessions that occur between startOfWeek and endOfWeek
+ */
+export function filterSessionsFromWeek(sessions, startOfWeek, endOfWeek) {
+  return sessions.filter((session) => {
+    const sessionDate = new Date(`${ session.date }`)
+    return sessionDate >= startOfWeek && sessionDate <= endOfWeek
+  })
 }

@@ -19,3 +19,18 @@ export function getRootPath(pathname) {
 export function getProgressPercentage(value, reference) {
   return Math.min((value * 100) / reference, 100)
 }
+
+/**
+ * Calculates the percentage increase or decrease from an old value to a new value.
+ *
+ * @param {number} oldValue - The original value
+ * @param {number} newValue - The new value to compare
+ * @returns {number} The rounded percentage change
+ */
+export function getPercentageIncrease(oldValue, newValue) {
+  if (oldValue === 0) return newValue === 0 ? 0 : Infinity
+
+  const increase = newValue - oldValue
+  const percentage = (increase / oldValue) * 100
+  return Math.round(percentage)
+}

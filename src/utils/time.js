@@ -30,3 +30,35 @@ export function formatDate(dateString) {
     year: 'numeric'
   }).format(date)
 }
+
+/**
+ * Returns the date ranges for the current week and the previous week.
+ *
+ * @returns {Object} An object containing:
+ *   - currentWeek: { start: Date, end: Date } — start and end of the current week
+ *   - lastWeek: { start: Date, end: Date } — start and end of the previous week
+ */
+export function getWeekRanges() {
+  const today = new Date()
+  const dayOfWeek = today.getDay() === 0 ? 7 : today.getDay()
+
+  const startOfCurrentWeek = new Date(today)
+  startOfCurrentWeek.setDate(today.getDate() - (dayOfWeek - 1))
+  startOfCurrentWeek.setHours(0, 0, 0, 0)
+
+  const endOfCurrentWeek = new Date(startOfCurrentWeek)
+  endOfCurrentWeek.setDate(startOfCurrentWeek.getDate() + 6)
+  endOfCurrentWeek.setHours(23, 59, 59, 999)
+
+  const startOfLastWeek = new Date(startOfCurrentWeek)
+  startOfLastWeek.setDate(startOfCurrentWeek.getDate() - 7)
+
+  const endOfLastWeek = new Date(startOfLastWeek)
+  endOfLastWeek.setDate(startOfLastWeek.getDate() + 6)
+  endOfLastWeek.setHours(23, 59, 59, 999)
+
+  return {
+    currentWeek: { start: startOfCurrentWeek, end: endOfCurrentWeek },
+    lastWeek: { start: startOfLastWeek, end: endOfLastWeek }
+  }
+}
