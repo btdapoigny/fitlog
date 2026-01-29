@@ -1,6 +1,10 @@
+import { resolveWorkoutSession } from '@/utils/workout'
+
 import { InfoItem } from '@/components/molecules/InfoItem'
 import { CTA } from '@/components/organisms/CTA'
 import { WorkoutSessionsList } from '@/components/organisms/WorkoutSessionsList'
+
+import { workoutTemplates, workoutSessions } from '@/data/initialState'
 
 import WorkoutImage from '@/assets/img/workout.jpg'
 import PlanningImage from '@/assets/img/planning.jpg'
@@ -34,38 +38,7 @@ export function Dashboard() {
 
   const workoutSessionsListColumns = ['Nom', 'Date', 'Exercices', 'Total séries', 'Total répétitions', 'Total volume']
 
-  const workoutSessionsListData = [
-    {
-      id: 1,
-      name: 'Push',
-      uptitle: 'Focus force',
-      date: '12 janvier 2026',
-      exercices: 6,
-      totalSets: 20,
-      totalReps: 214,
-      totalVolume: 234
-    },
-    {
-      id: 2,
-      name: 'Push',
-      uptitle: null,
-      date: '12 janvier 2026',
-      exercices: 6,
-      totalSets: 20,
-      totalReps: 214,
-      totalVolume: 234
-    },
-    {
-      id: 3,
-      name: 'Push',
-      uptitle: 'Focus force',
-      date: '12 janvier 2026',
-      exercices: 6,
-      totalSets: 20,
-      totalReps: 214,
-      totalVolume: 234
-    },
-  ]
+  const workoutSessionsListData = workoutSessions.slice(-5).map(session => resolveWorkoutSession(session, workoutTemplates))
 
   return (
     <>

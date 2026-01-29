@@ -1,6 +1,9 @@
+import { useParams } from 'react-router'
+
 import { useToggle } from '@/hooks/useToggle'
 
 import { formatSecondsToHoursMinutes } from '@/utils/time.js'
+import { calculateWorkoutStats } from '@/utils/workout.js'
 
 import { Input } from '@/components/atoms/Input'
 import { Button } from '../components/atoms/Button'
@@ -9,61 +12,33 @@ import { CTA } from '@/components/organisms/CTA'
 import { ExercicesList } from '@/components/organisms/ExercicesList'
 import { Modal } from '@/components/organisms/Modal'
 
-import ChestImage from '@/assets/img/chest.jpg'
+import { workoutTemplates } from '@/data/initialState'
+
 import NumbersIcon from '@/assets/icons/stats/numbers.svg?react'
 import ClockIcon from '@/assets/icons/stats/clock.svg?react'
 import ChartIcon from '@/assets/icons/stats/chart.svg?react'
 import TargetIcon from '@/assets/icons/stats/target.svg?react'
 
 export function WorkoutTemplate() {
+  const { id } = useParams()
   const [showModal, toggleShowModal] = useToggle(false)
 
-  const templateCTA = {
-    uptitle: "Focus force",
-    title: "Push",
-    description: "Séance push avec un focus sur la force. Muscles ciblés : Pectoraux, triceps, épaules.",
-    image: { src: ChestImage, alt: "Séance d'entrainement" },
+  const template = workoutTemplates.find(template => template.id === parseInt(id))
+
+  const ctaProps = {
+    uptitle: template.uptitle,
+    title: template.title,
+    description: template.description,
+    image: { src: template.thumbnail, alt: `Séance ${ template.title }` },
     button: {
-      label: "Modifier",
+      label: "Modifier les informations",
       handleClick: () => toggleShowModal()
     }
   }
 
-  const submitForm = (event) => {
-    event.preventDefault()
-    toggleShowModal()
-  }
+  const { totalDuration, totalSets, totalRepsTarget } = calculateWorkoutStats(template.exercices)
 
-  const exercicesData = [
-    {
-      id: 1,
-      name: 'Écarté à la poulie',
-      weight: 7.5,
-      sets: 3,
-      repsTarget: 15,
-      restTime: 90
-    },
-    {
-      id: 2,
-      name: 'Développé décliné',
-      weight: 80,
-      sets: 3,
-      repsTarget: 8,
-      restTime: 180
-    },
-  ]
-
-  const totals = exercicesData.reduce(
-    (acc, exercice) => {
-      acc.restTime += exercice.restTime
-      acc.repsTarget += exercice.repsTarget
-      acc.sets += exercice.sets
-      return acc
-    },
-    { restTime: 0, repsTarget: 0, sets: 0 }
-  )
-
-  const list = exercicesData.map(exercice => {
+  const list = template.exercices.map(exercice => {
     return {
       id: exercice.id,
       fields: [
@@ -103,13 +78,18 @@ export function WorkoutTemplate() {
     }
   })
 
+  const submitForm = (event) => {
+    event.preventDefault()
+    toggleShowModal()
+  }
+
   return (
     <>
-      <CTA { ...templateCTA } />
-      <InfoItem title="Nombre d'exercices" value={ exercicesData.length } icon={ NumbersIcon } />
-      <InfoItem title="Durée de la séance" value={ formatSecondsToHoursMinutes(totals.restTime) } icon={ ClockIcon } />
-      <InfoItem title="Total de séries" value={ totals.sets } icon={ ChartIcon } />
-      <InfoItem title="Objectif total de répétitions" value={ totals.repsTarget } icon={ TargetIcon } />
+      <CTA { ...ctaProps } />
+      <InfoItem title="Nombre d'exercices" value={ template.exercices.length } icon={ NumbersIcon } />
+      <InfoItem title="Durée de la séance" value={ formatSecondsToHoursMinutes(totalDuration) } icon={ ClockIcon } />
+      <InfoItem title="Total de séries" value={ totalSets } icon={ ChartIcon } />
+      <InfoItem title="Objectif total de répétitions" value={ totalRepsTarget } icon={ TargetIcon } />
       <ExercicesList title="Exercices" list={ list } handleAddItem={ () => {} } />
       { showModal &&
         <Modal title="Modifier le modèle" closeModal={ toggleShowModal }>

@@ -2,11 +2,15 @@ import { useState } from 'react'
 
 import { useToggle } from '@/hooks/useToggle'
 
+import { resolveWorkoutSession } from '@/utils/workout'
+
 import { Input } from '@/components/atoms/Input'
-import { Button } from '../components/atoms/Button'
+import { Button } from '@/components/atoms/Button'
 import { CTA } from '@/components/organisms/CTA'
 import { WorkoutSessionsList } from '@/components/organisms/WorkoutSessionsList'
 import { Modal } from '@/components/organisms/Modal'
+
+import { workoutTemplates, workoutSessions } from '@/data/initialState'
 
 import WorkoutImage from '@/assets/img/workout.jpg'
 import PlanningImage from '@/assets/img/planning.jpg'
@@ -14,11 +18,6 @@ import PlanningImage from '@/assets/img/planning.jpg'
 export function WorkoutSessions() {
   const [toggleTemplate, setToggleTemplate] = useState(false)
   const [showModal, toggleShowModal] = useToggle(false)
-
-  const submitForm = (event) => {
-    event.preventDefault()
-    toggleShowModal()
-  }
 
   const workoutSessionCTA = {
     uptitle: "Nouvelle séance",
@@ -42,40 +41,21 @@ export function WorkoutSessions() {
     }
   }
 
+  const workoutTemplatesSelectOptions = workoutTemplates.map(template => {
+    return {
+      name: `${ template.title + (template.uptitle ? ` - ${ template.uptitle}` : '') }`,
+      value: template.id
+    }
+  })
+
   const workoutSessionsListColumns = ['Nom', 'Date', 'Exercices', 'Total séries', 'Total répétitions', 'Total volume']
 
-  const workoutSessionsListData = [
-    {
-      id: 1,
-      name: 'Push',
-      uptitle: 'Focus force',
-      date: '12 janvier 2026',
-      exercices: 6,
-      totalSets: 20,
-      totalReps: 214,
-      totalVolume: 234
-    },
-    {
-      id: 2,
-      name: 'Push',
-      uptitle: null,
-      date: '12 janvier 2026',
-      exercices: 6,
-      totalSets: 20,
-      totalReps: 214,
-      totalVolume: 234
-    },
-    {
-      id: 3,
-      name: 'Push',
-      uptitle: 'Focus force',
-      date: '12 janvier 2026',
-      exercices: 6,
-      totalSets: 20,
-      totalReps: 214,
-      totalVolume: 234
-    },
-  ]
+  const workoutSessionsListData = workoutSessions.map(session => resolveWorkoutSession(session, workoutTemplates))
+
+  const submitForm = (event) => {
+    event.preventDefault()
+    toggleShowModal()
+  }
 
   return (
     <>
@@ -87,7 +67,7 @@ export function WorkoutSessions() {
           <form onSubmit={ submitForm }>
             <Input label="Date" type="date" />
             <Input label="Utiliser un modèle" type="checkbox" value={ toggleTemplate } handleChange={ setToggleTemplate } />
-            { toggleTemplate && <Input label="Sélectionner un modèle" type="select" options={[{ name: 'Push - Focus force', value: 1 }, { name: 'Push - Focus volume', value: 2 }]} /> }
+            { toggleTemplate && <Input label="Sélectionner un modèle" type="select" options={ workoutTemplatesSelectOptions } /> }
             { !toggleTemplate &&             
               <>
                 <Input label="Nom de la séance" type="text" placeholder="Ex. Legs" />
