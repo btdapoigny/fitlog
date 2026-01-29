@@ -107,7 +107,7 @@ export const workoutSessions = [
   {
     id: 1,
     templateId: 1,
-    date: "2026-01-12",
+    date: "2026-01-23",
     exercices: [
       {
         id: 1,
