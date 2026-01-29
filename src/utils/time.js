@@ -40,25 +40,27 @@ export function formatDate(dateString) {
  */
 export function getWeekRanges() {
   const today = new Date()
-  const dayOfWeek = today.getDay() === 0 ? 7 : today.getDay()
+  const day = today.getDay() || 7
 
-  const startOfCurrentWeek = new Date(today)
-  startOfCurrentWeek.setDate(today.getDate() - (dayOfWeek - 1))
-  startOfCurrentWeek.setHours(0, 0, 0, 0)
+  const startOfWeek = (offset = 0) => {
+    const date = new Date(today)
+    date.setDate(today.getDate() - (day - 1) + offset)
+    date.setHours(0, 0, 0, 0)
+    return date
+  }
 
-  const endOfCurrentWeek = new Date(startOfCurrentWeek)
-  endOfCurrentWeek.setDate(startOfCurrentWeek.getDate() + 6)
-  endOfCurrentWeek.setHours(23, 59, 59, 999)
+  const endOfWeek = (start) => {
+    const date = new Date(start)
+    date.setDate(start.getDate() + 6)
+    date.setHours(23, 59, 59, 999)
+    return date
+  }
 
-  const startOfLastWeek = new Date(startOfCurrentWeek)
-  startOfLastWeek.setDate(startOfCurrentWeek.getDate() - 7)
-
-  const endOfLastWeek = new Date(startOfLastWeek)
-  endOfLastWeek.setDate(startOfLastWeek.getDate() + 6)
-  endOfLastWeek.setHours(23, 59, 59, 999)
+  const currentStart = startOfWeek()
+  const lastStart = startOfWeek(-7)
 
   return {
-    currentWeek: { start: startOfCurrentWeek, end: endOfCurrentWeek },
-    lastWeek: { start: startOfLastWeek, end: endOfLastWeek }
+    currentWeek: { start: currentStart, end: endOfWeek(currentStart) },
+    lastWeek: { start: lastStart, end: endOfWeek(lastStart) }
   }
 }
