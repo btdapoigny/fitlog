@@ -13,7 +13,7 @@ export function InfoItem({ title, value, placeholder, suffix, reference, trendPe
   }
 
   return (
-    <div className={ classList('info-item', { 'info-item--reduced': progress }) }>
+    <div className={ classList('info-item', { 'info-item--reduced': progress !== undefined }) }>
       <div className="info-item__content">
         <span className="info-item__content__title">{ title }</span>
         { !isEditable && 
@@ -39,7 +39,7 @@ export function InfoItem({ title, value, placeholder, suffix, reference, trendPe
             { suffix && <span className="info-item__content__value"> { suffix }</span> }
           </>
         }
-        { progress && <ProgressBar value={ progress } /> }
+        { progress !== undefined && <ProgressBar value={ progress } /> }
       </div>
       { icon && <div className="info-item__icon"><Icon /></div> }
       { (isEditable && isRemovable) &&
